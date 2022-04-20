@@ -14,16 +14,16 @@ export class CardsService {
   ) {}
 
   create(createCardInput: CreateCardInput) {
-    const { links, ...cardParams } = createCardInput;
+    const { ...cardParams } = createCardInput;
 
     // Card
     const card = this.cardsRepo.create({
       ...cardParams,
-      links: links.map((link) =>
-        this.linksRepo.create({
-          url: link,
-        }),
-      ),
+      // links: links.map((link) =>
+      //   this.linksRepo.create({
+      //     url: link,
+      //   }),
+      // ),
     });
     console.log({ card });
 
@@ -47,7 +47,7 @@ export class CardsService {
   }
 
   async update(id: number, updateCardInput: UpdateCardInput) {
-    const { links, ...cardParams } = updateCardInput;
+    const { ...cardParams } = updateCardInput;
 
     const card = await this.cardsRepo.findOne(id, { select: ['id', 'links'] });
     if (!card) {
@@ -57,11 +57,6 @@ export class CardsService {
     return this.cardsRepo.save({
       ...card,
       ...cardParams,
-      links: links.map((link) =>
-        this.linksRepo.create({
-          url: link,
-        }),
-      ),
     });
   }
 

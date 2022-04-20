@@ -19,7 +19,7 @@ export class CreateCardInput {
   @IsString()
   category: string;
 
-  @Field(() => [String], { description: 'Card links' })
-  @IsArray()
-  links: string[];
+  // @Field(() => [String], { description: 'Card links' })
+  // @IsArray()
+  // links: string[];
 }

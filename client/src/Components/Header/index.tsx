@@ -27,6 +27,10 @@ const Header: FunctionComponent<IProps> = () => {
 
   const [imageName, setImageName] = useState('default-card.svg');
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+
   useEffect(() => {
     setPhase(phases[phasesIdx]);
   }, [phasesIdx]);
@@ -133,6 +137,7 @@ const Header: FunctionComponent<IProps> = () => {
                 <p className=" mb-3">Title</p>
                 <div className="mb-5">
                   <textarea
+                    onChange={(e) => setTitle(e.target.value)}
                     placeholder="Atom..."
                     className="hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400"
                   ></textarea>
@@ -148,6 +153,7 @@ const Header: FunctionComponent<IProps> = () => {
                 <p className=" mb-3">Description</p>
                 <div className="mb-5">
                   <textarea
+                    onChange={(e) => setDescription(e.target.value)}
                     placeholder="An atom is..."
                     className="hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400"
                   ></textarea>
@@ -161,6 +167,7 @@ const Header: FunctionComponent<IProps> = () => {
                 <p className=" mb-3">Category</p>
                 <div className="mb-5">
                   <textarea
+                    onChange={(e) => setCategory(e.target.value)}
                     placeholder="Chemistry..."
                     className="hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400"
                   ></textarea>
@@ -169,13 +176,30 @@ const Header: FunctionComponent<IProps> = () => {
             </div>
             <ButtonBase
               onClick={() => {
-                setPhasesIdx((prev) =>
-                  prev === phases.length - 1 ? prev : prev + 1,
-                );
+                if (phasesIdx === phases.length - 1) {
+                  fetch('http://localhost:4000/cards', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      title,
+                      category,
+                      description,
+                      imageName,
+                    }),
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                  }).then(() => {
+                    setModalOpen(false);
+                  });
+                } else {
+                  setPhasesIdx((prev) =>
+                    prev === phases.length - 1 ? prev : prev + 1,
+                  );
+                }
               }}
               className="mb-3 w-full border border-solid border-gray-500 py-2 rounded-md transition duration-200 hover:bg-sky-900"
             >
-              Next
+              {phasesIdx === phases.length - 1 ? 'Create' : 'Next'}
             </ButtonBase>
           </div>
         </Modal>
