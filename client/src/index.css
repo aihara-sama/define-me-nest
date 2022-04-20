@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind variants;
+
+@layer base {
+  html {
+    height: calc(100% - 1rem);
+    padding: 1rem;
+    color: #fff;
+  }
+  body,
+  #root {
+    height: 100%;
+  }
+}
+
+@layer utilities {
+  .bg-gradient {
+    background: linear-gradient(
+      90deg,
+      rgba(2, 10, 17, 1) 0%,
+      rgba(0, 24, 48, 1) 100%
+    );
+  }
+  .hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .darken {
+    filter: contrast(0.5);
+  }
+}
+
+@tailwind utilities;
