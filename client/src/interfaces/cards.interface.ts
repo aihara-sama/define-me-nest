@@ -3,5 +3,9 @@ export interface ICard {
   description: string;
   imageName: string;
   category: string;
-  links: string[];
+  id: string;
+  // links: string[];
 }
+
+export type TDraftCreateCard = Omit<ICard, 'id'>;
+export type TDraftEditCard = ICard;

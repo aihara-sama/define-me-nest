@@ -1,4 +1,5 @@
 export interface ISearch {
-  title: string;
+  search: string;
+  offset: number;
   category: string;
 }

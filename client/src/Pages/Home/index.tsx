@@ -1,27 +1,21 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../app/hooks';
 import Cards from '../../Components/Cards';
+// import Cards from '../../Components/Cards';
 import { ICard } from '../../interfaces/cards.interface';
-import StyledHome from './styled';
+// import StyledHome from './styled';
 
 interface IProps {}
 
 const Home: FunctionComponent<IProps> = ({}) => {
-  const [cards, setCards] = useState<ICard[]>([]);
-
-  useEffect(() => {
-    fetch('http://localhost:4000/cards')
-      .then((r) => r.json())
-      .then((r) => {
-        console.log({ r });
-
-        setCards(r);
-      });
-  }, []);
+  // Redux state
+  const { items } = useAppSelector((state) => state.cards);
 
   return (
-    <StyledHome className="mt-5">
-      <Cards cards={cards} />
-    </StyledHome>
+    <div className="mt-5">
+      <Cards cards={items} />
+    </div>
   );
 };
 

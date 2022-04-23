@@ -18,7 +18,7 @@ import { SearchModule } from './modules/search/search.module';
       rootPath: join(__dirname, '..', 'dist'),
       renderPath: '',
     }),
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot({ logging: 'all', logger: 'advanced-console' }),
     // CategoriesModule,
     CardsModule,
     LinksModule,

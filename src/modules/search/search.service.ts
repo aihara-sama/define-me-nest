@@ -10,13 +10,26 @@ export class SearchService {
     @InjectRepository(Card) private readonly searchRepo: Repository<Card>,
   ) {}
   async search(searchParams: ISearch): Promise<Card[]> {
+    console.log({ searchParams });
+
     const cards = await this.searchRepo.find({
-      where: {
-        title: Like(`%${searchParams.title}%`),
-        category: Like(`%${searchParams.category}%`),
+      where: [
+        {
+          title: Like(`%${searchParams.search}%`),
+          category: Like(`%${searchParams.category}%`),
+        },
+        {
+          category: Like(`%${searchParams.category}%`),
+          description: Like(`%${searchParams.search}%`),
+        },
+      ],
+      take: 20,
+      order: {
+        id: 'DESC',
       },
+      skip: searchParams.offset,
     });
-    console.log({ cards });
+    console.log('Searching', { cards });
     return cards;
   }
 }
