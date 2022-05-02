@@ -12,6 +12,14 @@
   #root {
     height: 100%;
   }
+
+  body {
+    font-family: 'Noto Serif', serif;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer utilities {
@@ -28,6 +36,10 @@
 
   .darken {
     filter: contrast(0.5);
+  }
+
+  .poper-shadow {
+    box-shadow: 0 0 5px #516a72;
   }
 }
 

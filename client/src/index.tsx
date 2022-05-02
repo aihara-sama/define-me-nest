@@ -7,14 +7,15 @@ import { routes } from './routes';
 import './index.css';
 import Header from './Components/Header';
 import Modal from './Components/Modals';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Header />
       <Routes>
-        {routes.map((route) => (
-          <Route path={route.path} element={<route.Component />} />
+        {routes.map((route, idx) => (
+          <Route key={idx} path={route.path} element={<route.Component />} />
         ))}
       </Routes>
       <Modal />

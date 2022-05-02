@@ -11,7 +11,8 @@ export class CategoriesService {
     @InjectRepository(Category) private categoriesRepo: Repository<Category>,
   ) {}
   create(createCategoryInput: CreateCategoryInput) {
-    return this.categoriesRepo.create(createCategoryInput);
+    const category = this.categoriesRepo.create(createCategoryInput);
+    return this.categoriesRepo.save(category);
   }
 
   findAll() {

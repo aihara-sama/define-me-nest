@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import cardsSlice from '../../../app/slices/cardsSlice';
 import { useCreateCardMutation } from '../../../app/services/cards-service';
 import modalsSlice from '../../../app/slices/modalSlice';
+import { Carousel } from 'react-responsive-carousel';
 
 export interface IProps {}
 export type TPhase = 'Image' | 'Description';
@@ -96,7 +97,7 @@ const CreateCard: FunctionComponent<IProps> = () => {
   }
 
   return (
-    <div className="text-gray-300 border  text-2xl w-[35rem] border-solid border-gray-500 rounded-md p-4 bg-[#000000e8]">
+    <div className="text-gray-300 border  text-2xl w-[28rem] border-solid border-gray-500 rounded-md p-4 bg-gradient">
       <div className="flex">
         <ButtonBase onClick={setPrevPhase}>
           <BackArrowIcon className="cursor-pointer" color="rgb(107 114 128)" />
@@ -109,20 +110,24 @@ const CreateCard: FunctionComponent<IProps> = () => {
         </ButtonBase>
       </div>
       <hr className="border-gray-500 my-3" />
-      <div className="relative overflow-hidden flex">
-        <Image phase={phase} onImageNameChange={setCardImageName} />
-        <div
-          className={
-            phase === 'Description' ? 'left-0 w-[100%]' : 'left-[100%] w-0'
-          }
+      <div>
+        <Carousel
+          className=""
+          showThumbs={false}
+          showArrows={false}
+          showIndicators={false}
+          showStatus={false}
+          selectedItem={phaseIdx}
         >
-          <Title
-            onInputChange={onInputChange}
-            disabled={!draftCreateCard.title}
-          />
-          <Description onInputChange={onInputChange} />
-          <Category onInputChange={onInputChange} />
-        </div>
+          <Image phase={phase} onImageNameChange={setCardImageName} />
+          <div className={`text-left`}>
+            <Title
+              onInputChange={onInputChange}
+              disabled={!draftCreateCard.title}
+            />
+            <Description onInputChange={onInputChange} />
+          </div>
+        </Carousel>
       </div>
       <ButtonBase
         disabled={nextBtnDisabled}

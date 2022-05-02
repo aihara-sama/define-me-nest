@@ -7,7 +7,7 @@ import {
 } from '../../interfaces/cards.interface';
 
 const draftCreateCardDefaultFields: TDraftCreateCard = {
-  category: '',
+  category: 'All',
   description: '',
   imageName: DEFAULT_CARD_IMAGE_NAME,
   title: '',

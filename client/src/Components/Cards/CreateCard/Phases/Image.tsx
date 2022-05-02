@@ -55,9 +55,7 @@ const Image: FunctionComponent<IProps> = ({ phase, onImageNameChange }) => {
 
   return (
     <div
-      className={`mb-4 relative [transition-property:width] duration-300 ${
-        phase === 'Image' ? 'left-0 w-[100%]' : 'left-[100%] w-0'
-      }`}
+      className={`mr-[1px] mb-4 relative [transition-property:width] duration-300`}
     >
       <span className="bg-[#00000030] top-0 right-0 bottom-0 left-0 absolute"></span>
       <img

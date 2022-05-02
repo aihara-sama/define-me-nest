@@ -19,7 +19,7 @@ import { SearchModule } from './modules/search/search.module';
       renderPath: '',
     }),
     TypeOrmModule.forRoot({ logging: 'all', logger: 'advanced-console' }),
-    // CategoriesModule,
+    CategoriesModule,
     CardsModule,
     LinksModule,
     SearchModule,

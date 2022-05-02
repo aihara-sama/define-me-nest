@@ -11,14 +11,14 @@ const Description: FunctionComponent<IProps> = ({ onInputChange }) => {
 
   return (
     <div className={`relative transition-all duration-300`}>
-      <p className=" mb-3">Description</p>
+      <p className="text-lg mb-3">Description</p>
       <div className="mb-5">
         <textarea
           value={draftCreateCard.description}
           name="description"
           onChange={onInputChange}
           placeholder="An atom is..."
-          className="min-h-[287px] hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400"
+          className="min-h-[406px] hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400 text-lg"
         ></textarea>
       </div>
     </div>

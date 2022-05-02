@@ -13,14 +13,14 @@ const Title: FunctionComponent<IProps> = ({ onInputChange }) => {
 
   return (
     <div className={`relative transition-all duration-300`}>
-      <p className=" mb-3">Title</p>
+      <p className="text-lg mb-3">Title</p>
       <div className="mb-5">
         <input
           value={draftEditCard.title}
           name="title"
           onChange={onInputChange}
           placeholder="Atom..."
-          className="hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400"
+          className="hide-scroll w-full bg-transparent border border-solid border-gray-500 outline-none rounded-md pl-2 py-1 text-gray-400 text-lg"
         />
       </div>
     </div>

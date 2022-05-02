@@ -1,15 +1,24 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import logoIcon from '../../assets/images/logo.svg';
 import ButtonBase from '@mui/material/ButtonBase';
 import Search from '../Search';
 import modalsSlice from '../../app/slices/modalSlice';
 import { useDispatch } from 'react-redux';
+import { useGetCardsCategoriesQuery } from '../../app/services/cards-categories';
+import cardsCategoriesSlice from '../../app/slices/cardsCategoriesSlice';
 
 interface IProps {}
 
 const Header: FunctionComponent<IProps> = () => {
   // Hooks
   const dispatch = useDispatch();
+  const { data } = useGetCardsCategoriesQuery();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(cardsCategoriesSlice.actions.setCardsCategories(data));
+    }
+  }, [data]);
 
   const openModal = () =>
     dispatch(modalsSlice.actions.openModal('create-card'));
